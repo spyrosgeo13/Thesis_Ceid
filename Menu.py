@@ -1,13 +1,13 @@
 import Uniform_numbers_generation
 import poisson_numbers_generation
-
-
+import Binomial_numbers_generation
+import time 
 
 
 menu_options = {
-    1: 'Create Normal Distribution of Random Numbers',
-    2: 'Create Poisson Distribution of Random Numbers',
-    3: 'Option 3',
+    1: 'Create Normal Distribution of Pseudo-Random Numbers',
+    2: 'Create Poisson Distribution of Pseudo-Random Numbers',
+    3: 'Create Binomial Distribution of Pseudo-Random Numbers',
     4: 'Exit',
 }
 
@@ -25,11 +25,13 @@ def option1():
     #ution \'Option 1\'')
 
 def option2():
-     poisson_numbers_generation.create_poisson_distribution_numbers_array()
-    
+    poisson_numbers_generation.create_poisson_distribution_numbers_array()
+    #print(f"took time in {poisson_numbers_generation.toc - poisson_numbers_generation.tic:0.4f} seconds")
 def option3():
-     print('Handle option \'Option 3\'')
-
+    
+    Binomial_numbers_generation.create_binomial_distribution_numbers_array()
+    
+    
 if __name__=='__main__':
     while(True):
         print_menu()
