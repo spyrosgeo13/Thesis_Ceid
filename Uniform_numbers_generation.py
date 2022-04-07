@@ -10,7 +10,10 @@ def create_uniform_distribution_numbers_array():
 
     
     #s = np.default_rng().uniform(low,high,size)
-    s=  np.random.uniform(low, high , size)
+    s =  np.random.uniform(low, high , size)
     
     for i in range(0, len(s)):
         print(s[i])
+
+    
+

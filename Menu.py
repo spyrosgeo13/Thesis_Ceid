@@ -1,7 +1,7 @@
 import Uniform_numbers_generation
-import poisson_numbers_generation
+import poisson_numbers_generation as poisson_numbers_generation
 import Binomial_numbers_generation
-import time 
+
 
 
 menu_options = {
@@ -16,20 +16,18 @@ def print_menu():
         print (key, '--', menu_options[key] )
 
 def option1():
-    print("pasok")
-    #print(Number_generator.randomlist)
-
+    
     Uniform_numbers_generation.create_uniform_distribution_numbers_array()
-
-    #print('Handle opb ghuv11
-    #ution \'Option 1\'')
 
 def option2():
     poisson_numbers_generation.create_poisson_distribution_numbers_array()
-    #print(f"took time in {poisson_numbers_generation.toc - poisson_numbers_generation.tic:0.4f} seconds")
+   
 def option3():
-    
+    #calling the funtion that wi222
+    #ll create the specified bonmial distribution
     Binomial_numbers_generation.create_binomial_distribution_numbers_array()
+
+#def option4():
     
     
 if __name__=='__main__':
