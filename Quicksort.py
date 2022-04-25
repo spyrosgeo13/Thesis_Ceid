@@ -5,7 +5,7 @@ sys.setrecursionlimit(100000)
 
 
 def quicksort(arr, start, end, pivot_mode='random'):
-	if start < end:
+	if start < end: #start-end <32 gia quic2
 		split = partition(arr, start, end, pivot_mode)
 		quicksort(arr, start, split-1, pivot_mode)
 		quicksort(arr, split+1, end, pivot_mode)
@@ -33,10 +33,12 @@ def main():
 	s = np.load("poisson.npy")
 	print('Not sorted: %s' % s)
 	print(len(s))
-	print('Sorted: %s' % quicksort(s, 0, len(s)-1)) 
+	
 	print("test")
+	print('Sorted: %s' % quicksort(s, 0, len(s)-1)) 
+	
 	# Comparison between quick sort (both with pivot as the first element and random pivot) and the built-in Python sort
-	big_arr = [random.random() for _ in range(100000)]
+	#big_arr = [random.random() for _ in range(10000)]
 	t1 = timeit.Timer(lambda: quicksort(s, 0, len(s)-1, 'first')).timeit(number=1)
 	big_arr = [random.random() for _ in range(100000)]
 	t2 = timeit.Timer(lambda: quicksort(big_arr, 0, len(big_arr)-1, 'random')).timeit(number=1)
