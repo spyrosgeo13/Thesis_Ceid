@@ -12,7 +12,7 @@ def create_poisson_distribution_numbers_array():
 
 
     # creating the array s
-    s = np.random.default_rng().poisson(lamda,size)
+    s = np.random.poisson(lamda,size)
     
     #store the  created array in a file 
     np.save("poisson.npy", s)

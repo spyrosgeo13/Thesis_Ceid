@@ -33,7 +33,7 @@ def main():
 	s = np.load("poisson.npy")
 	print('Not sorted: %s' % s)
 	print(len(s))
-	print('Sorted: %s' % quicksort(s, 0, len(s)-1))
+	print('Sorted: %s' % quicksort(s, 0, len(s)-1)) 
 	print("test")
 	# Comparison between quick sort (both with pivot as the first element and random pivot) and the built-in Python sort
 	big_arr = [random.random() for _ in range(100000)]

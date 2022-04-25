@@ -1,14 +1,14 @@
 import Uniform_numbers_generation
 import poisson_numbers_generation as poisson_numbers_generation
 import Binomial_numbers_generation
-
-
+import geometric_numbers_distribution
 
 menu_options = {
     1: 'Create Normal Distribution of Pseudo-Random Numbers',
     2: 'Create Poisson Distribution of Pseudo-Random Numbers',
     3: 'Create Binomial Distribution of Pseudo-Random Numbers',
-    4: 'Exit',
+    4: 'Create geometric Distribution of Pseudo_Random Numbers',
+    5: 'Exit',
 }
 
 def print_menu():
@@ -27,7 +27,11 @@ def option3():
     #ll create the specified bonmial distribution
     Binomial_numbers_generation.create_binomial_distribution_numbers_array()
 
-#def option4():
+def option4():
+    
+    geometric_numbers_distribution.create_geometric_distribution_numbers_array()
+
+    
     
     
 if __name__=='__main__':
@@ -46,6 +50,8 @@ if __name__=='__main__':
         elif option == 3:
             option3()
         elif option == 4:
+            option4()
+        elif option == 5:
             print('Thanks message before exiting')
             exit()
         else:
