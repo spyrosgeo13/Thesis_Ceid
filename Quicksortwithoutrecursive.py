@@ -70,11 +70,13 @@ def main():
         s = np.load("poisson.npy")
         n=len(s)
         print("test")
+        print(s)
             #print('Sorted: %s' % quicksort(s, 0, len(s)-1))
             #arr = [4, 3, 5, 2, 1, 3, 2, 3]
             #n = len(arr)
         t1 = timeit.Timer(lambda: quickSortIterative(s, 0, n - 1 )).timeit(number=1)
         print('Time to sort 100000 l floats with quick sort (first element as pivot): %f seconds' % t1)
+        print(s)
             #print ("Sorted array is:")
             #for i in range(n):
             #print ("%d" %arr[i])

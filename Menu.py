@@ -1,10 +1,10 @@
 import Uniform_numbers_generation
-import poisson_numbers_generation as poisson_numbers_generation
+import poisson_numbers_generation 
 import Binomial_numbers_generation
 import geometric_numbers_distribution
 
 menu_options = {
-    1: 'Create Normal Distribution of Pseudo-Random Numbers',
+    1: 'Create Uniform Distribution of Pseudo-Random Numbers',
     2: 'Create Poisson Distribution of Pseudo-Random Numbers',
     3: 'Create Binomial Distribution of Pseudo-Random Numbers',
     4: 'Create geometric Distribution of Pseudo_Random Numbers',
@@ -24,7 +24,9 @@ def option2():
    
 def option3():
     #calling the funtion that wi222
-    #ll create the specified bonmial distribution
+    #222
+    #22
+    #2ll create the specified bonmial distribution
     Binomial_numbers_generation.create_binomial_distribution_numbers_array()
 
 def option4():

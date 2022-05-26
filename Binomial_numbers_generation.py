@@ -11,10 +11,6 @@ def  create_binomial_distribution_numbers_array():
 
     s = np.random.binomial(n,p,size)
 
+    #save the binomial distribution 
 
-
-    
-    #rng = np.random.default_rng()
-    # s = rng.binomial(n,p,size)
-    for i in range(0, len(s)):
-        print(s[i])
+    np.save("binomial",s)
