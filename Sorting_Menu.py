@@ -1,11 +1,12 @@
 import poisson_numbers_generation         
 import QuickSort2
+import numpy as np
 # simple menu for the user to chose which distr will he sort
 menu_options = {
-    1: 'Uniform Distribution of Pseudo-Random Numbers',
-    2: 'Poisson Distribution of Pseudo-Random Numbers',
-    3: 'Binomial Distribution of Pseudo-Random Numbers',
-    4: 'geometric Distribution of Pseudo_Random Numbers',
+    1: 'Sort the given Poisson  Distribution of Pseudo-Random Numbers',
+    2: 'Sort the given Uniform  Distribution of Pseudo-Random Numbers',
+    3: 'Sort the given Binomial  Distribution of Pseudo-Random Numbers',
+    4: 'Sort the given Geometric  Distribution of Pseudo_Random Numbers',
     5: 'Exit',
 }
 
@@ -20,15 +21,19 @@ def main():
             print('Wrong input. Please enter a number ...')
         #Check what choice was entered and act accordingly
         if option == 1:
-           option1()
+           s = np.load("poisson.npy")
+           QuickSort2.sort_and_count(s)
         elif option == 2:
-            option2()
+            s = np.load("Uniform.npy")
+            QuickSort2.sort_and_count(s)
         elif option == 3:
-            option3()
+            s = np.load("Binomial.npy")
+            QuickSort2.sort_and_count(s)
         elif option == 4:
-            option4()
+            s = np.load("geometric.npy")
+            QuickSort2.sort_and_count(s)
         elif option == 5:
-            print('Thanks message before exiting')
+            print('Thank you, you exited successfully')
             exit()
         else:
             print('Invalid option. Please enter a number between 1 and 4.')
@@ -37,22 +42,8 @@ def print_menu():
     for key in menu_options.keys():
         print (key, '--', menu_options[key] )
 
-def option1():
-    poisson_numbers_generation.load_poisson_distribution_and_sort_it()
-    
 
-def option2():
-    print()
-
-   
-def option3():
-    print()
-
-    
-
-def option4():  
-    print()
-
+main()
 
 
 

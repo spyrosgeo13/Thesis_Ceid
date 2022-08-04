@@ -23,10 +23,7 @@ def option2():
     poisson_numbers_generation.create_poisson_distribution_numbers_array()
    
 def option3():
-    #calling the funtion that wi222
-    #222
-    #22
-    #2ll create the specified bonmial distribution
+
     Binomial_numbers_generation.create_binomial_distribution_numbers_array()
 
 def option4():
