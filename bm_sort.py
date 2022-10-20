@@ -41,17 +41,7 @@ class bm_policy(Enum):
     CONVEX = 4       #random convex combination
     ALTERNATING = 5  #alternate between 0.4 and 0.6
     #nees politikes gia probipalistic wquicksort
-    """1.Median of Medians?
-        2. Median of three
-        3.Median-of-five with random index selection method
-The method employs a sample size of 5 components, including the first, middle, 
-and last elements, as well as two more elements chosen at random between the first and 
-last elements using a random number generating function. Although this strategy improves load 
-balancing and cuts quicksort execution time by more than 5%, there is a cost associated with 
-random number creation.?? 
-EROTISI: to policy MID_MEDIAN den perni poli xrono?
-
-    """
+ 
 
 
 def bm_bubble_sort(tab, low:int, high:int) -> None:
@@ -120,15 +110,21 @@ def bm_quicksort_random(tab, low:int, high:int, policy:bm_policy=bm_policy.MEDIA
     alt_excess = 0.6
     alt_excess_low = True
     pivot_idx = None
+    depth = 0 
+
 
     if high > low:
         while idx_stack: #SINEXIZO AN I STOIVA DNE INE KENI
             
             while low < high:
-
+                if depth <=3 :
+                    print(depth, high - low + 1)
                 if bm_policy.MEDIAN == policy:
                     pivot = st.median(tab[low:high+1])
                     pivot_idx = None
+                    print((tab[low:high+1]))
+                    print(pivot)
+                    print(low,high)
                 elif bm_policy.MID_MEDIAN == policy:
                     n = high - low + 1
                     if n >= mid_elements:
@@ -153,7 +149,7 @@ def bm_quicksort_random(tab, low:int, high:int, policy:bm_policy=bm_policy.MEDIA
                 
                 #print("low=",low, "high =",high)
                 #print(high-low+1)   
-
+                
                 #partition
                 pivot_elements = [v for v in tab[low:high+1] if v == pivot]
                 lower_elements = [v for v in tab[low:high+1] if v < pivot]
@@ -162,14 +158,20 @@ def bm_quicksort_random(tab, low:int, high:int, policy:bm_policy=bm_policy.MEDIA
                 new_low = high - len(higher_elements) + 1 #IPOLOGIZO TO LOW ORIO TOU DEXIOU
                 tab[low:high+1] = list(itertools.chain(lower_elements, pivot_elements, higher_elements)) #ton arxiko pinaka den ton exo piraxei , sinenono ta 3 (voithitaka )dianismata
                 list.append(idx_stack, (new_low, high))
+                #edo thelo ton metriti +1
+                depth += 1
                 high = new_high #edo pao sto aristero melos
-                
+                print(idx_stack)
                 #analoga to vathos sti stoiva epistrefo mikos 
                 
             
                 
             low, high = idx_stack[-1] # VAZO TO LOW, HIGH STI TELEUTEA DIADA  I DIO AUTES GRAMMER ISODINAMOUN ME POP
             idx_stack = idx_stack[:-1] # OTI EXO IDI STI STOIVA -TIS TELEYTEAS TIMIS
+            #metritis -1
+            depth -= 1
+            
+            
             
     return
 
@@ -212,7 +214,6 @@ def bm_quicksort_switch(tab, low:int, high:int, switch_size:int=32, secondary_so
 
 def bm_quicksort_rec(tab, low:int, high:int) -> None:
     """bm_quickort_rec: Quicksort - recursive version
-
     """
 
     if high <= low:
@@ -256,10 +257,9 @@ total = sum(count > 1 for count in c.values())
 #print("there are %i duplicates elements in the array " %total)
 #metrisi duplicate stoixeion 
 time1 = time.time()
-bm_quicksort_random(a, 0, len(a) -1)
+bm_quicksort_random(a, 0, len(a)-1)
 
 time2 = time.time()
 sort_time=(time2-time1) 
 print('time to sort the array: %f' %sort_time)
-
-
+print(a)
