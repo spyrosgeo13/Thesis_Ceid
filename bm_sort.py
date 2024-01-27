@@ -24,7 +24,9 @@
 #  --
 #
 #
-
+import pandas
+from cgi import test
+import csv
 import time
 import random
 import itertools
@@ -40,14 +42,12 @@ class bm_policy(Enum):
     RANDOM = 3       #uniform random (stochastic baseline)
     CONVEX = 4       #random convex combination
     ALTERNATING = 5  #alternate between 0.4 and 0.6
-    #nees politikes gia probipalistic wquicksort
+    
  
 
 
 def bm_bubble_sort(tab, low:int, high:int) -> None:
-    """bm_bubble_sort: Basic bubble sort
-
-    """
+    """ bm_bubble_sort: Basic bubble sort """
 
     sorted = False
 
@@ -62,9 +62,7 @@ def bm_bubble_sort(tab, low:int, high:int) -> None:
 
 
 def bm_insertion_sort(tab, low:int, high:int) -> None:
-    """bm_insertion_sort: Insertion sort - simple form
-
-    """
+    """ bm_insertion_sort: Insertion sort - simple form """
 
     if low < high:
         for n in range(0,high-low+1):
@@ -99,32 +97,38 @@ def bm_quicksort_stack(tab, low:int, high:int) -> None:
     return
 
 
-def bm_quicksort_random(tab, low:int, high:int, policy:bm_policy=bm_policy.MEDIAN) -> None:
+def bm_quicksort_random(tab, low:int, high:int,ipodiastimata:list,policy:bm_policy=bm_policy.RANDOM) -> None:
     """bm_quicksort_random: Randomized quicksort with stack
 
     """
-
+    
     idx_stack = [(0, -1)]
     mid_elements = 16
     mid_distance = 0.25
-    alt_excess = 0.6
+    alt_excess = 0.6 # 0.4 
     alt_excess_low = True
     pivot_idx = None
     depth = 0 
-
+    ipodiastima = 0
+    
 
     if high > low:
         while idx_stack: #SINEXIZO AN I STOIVA DNE INE KENI
             
             while low < high:
-                if depth <=3 :
-                    print(depth, high - low + 1)
+                
+                if depth <=3  and depth >=1:
+                    ipodiastima = high  - low + 1
+                    
+                    ipodiastimata.append(ipodiastima)
+                    
+                    
                 if bm_policy.MEDIAN == policy:
                     pivot = st.median(tab[low:high+1])
                     pivot_idx = None
-                    print((tab[low:high+1]))
-                    print(pivot)
-                    print(low,high)
+                    #print((tab[low:high+1]))
+                    #print(pivot)
+                    #print(low,high)
                 elif bm_policy.MID_MEDIAN == policy:
                     n = high - low + 1
                     if n >= mid_elements:
@@ -135,16 +139,22 @@ def bm_quicksort_random(tab, low:int, high:int, policy:bm_policy=bm_policy.MEDIA
                         pivot = st.median(tab[low:high+1])
                     pivot_idx = None
                 elif bm_policy.CONVEX == policy:
+                    print("mpike in convex")
                     convex_low = np.random.uniform()
                     pivot_idx = int(convex_low*low + (1-convex_low)*high)
-                elif bm_policy.ALTERNATING:
+                elif bm_policy.ALTERNATING == policy:
                     pivot_idx = int(alt_excess*low + (1-alt_excess)*high) if alt_excess_low else int(alt_excess*high + (1-alt_excess)*low)
                     alt_excess_low = not alt_excess_low
+                    print("mpike sto aloternate")
                 elif bm_policy.RANDOM == policy:
+                    print("random")
                     pivot_idx = int(np.random.uniform(low, 1+high))
+                    
                 else:
                     pivot_idx = int(low+high)//2
+                    
                 if pivot_idx:
+                    print("MPENI  STO  PIVODT[IDXP]")
                     pivot = tab[pivot_idx]
                 
                 #print("low=",low, "high =",high)
@@ -161,7 +171,7 @@ def bm_quicksort_random(tab, low:int, high:int, policy:bm_policy=bm_policy.MEDIA
                 #edo thelo ton metriti +1
                 depth += 1
                 high = new_high #edo pao sto aristero melos
-                print(idx_stack)
+                #print(idx_stack)
                 #analoga to vathos sti stoiva epistrefo mikos 
                 
             
@@ -169,11 +179,12 @@ def bm_quicksort_random(tab, low:int, high:int, policy:bm_policy=bm_policy.MEDIA
             low, high = idx_stack[-1] # VAZO TO LOW, HIGH STI TELEUTEA DIADA  I DIO AUTES GRAMMER ISODINAMOUN ME POP
             idx_stack = idx_stack[:-1] # OTI EXO IDI STI STOIVA -TIS TELEYTEAS TIMIS
             #metritis -1
-            depth -= 1
+            #depth -= 1  #autro to afairo gia na min mionete to depth.
             
             
             
-    return
+    return 
+    
 
 
 def bm_quicksort_switch(tab, low:int, high:int, switch_size:int=32, secondary_sort=bm_insertion_sort) -> None:
@@ -242,14 +253,14 @@ def bm_issorted(tab) -> bool:
 
     """
 
-    n = length(tab)
+    n = len(tab)
     for i in range(0, n-1):
         if tab[i] > tab[i+1]:
             return False
     return True
 
-# Driver code
-a = np.load("Uniform.npy")
+''' # Driver code
+#a = np.load("Uniform.npy")
 print(a)
 #print('the length of array is ' ,len(a))
 c = Counter(a)
@@ -261,5 +272,16 @@ bm_quicksort_random(a, 0, len(a)-1)
 
 time2 = time.time()
 sort_time=(time2-time1) 
-print('time to sort the array: %f' %sort_time)
+#print('time to sort the array: %f' %sort_time)
 print(a)
+
+with open('test.csv','w') as file:
+    writer = csv.writer(file)
+    csv_data = [len(a)]
+    
+    writer.writerow(csv_data)
+
+
+
+dianisma = bm_quicksort_random()
+'''
