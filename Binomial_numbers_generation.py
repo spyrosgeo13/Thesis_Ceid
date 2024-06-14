@@ -1,4 +1,5 @@
 import numpy as np
+import os 
 
 def  create_binomial_distribution_numbers_array(): 
     
@@ -12,5 +13,13 @@ def  create_binomial_distribution_numbers_array():
     s = np.random.binomial(n,p,size)
 
     #save the binomial distribution 
+    folder_path = "Distributions_unsorted/Binom_distr"
+    filename = f"Binomial_{size}.npy"
 
-    np.save("binomial",s)
+
+   
+    full_path = os.path.join(folder_path, filename)
+    
+    # Save the created distribution in the specified folder
+    np.save(full_path, s)
+    

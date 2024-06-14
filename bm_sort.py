@@ -105,7 +105,7 @@ def bm_quicksort_random(tab, low:int, high:int,ipodiastimata:list,policy:bm_poli
     idx_stack = [(0, -1)]
     mid_elements = 16
     mid_distance = 0.25
-    alt_excess = 0.6 # 0.4 
+    alt_excess =  0.6  #0.4 
     alt_excess_low = True
     pivot_idx = None
     depth = 0 
@@ -119,12 +119,14 @@ def bm_quicksort_random(tab, low:int, high:int,ipodiastimata:list,policy:bm_poli
                 
                 if depth <=3  and depth >=1:
                     ipodiastima = high  - low + 1
-                    
+                    #print(high, "tyoso")
+                    #print(low,"INEE TO LOW")
                     ipodiastimata.append(ipodiastima)
                     
                     
                 if bm_policy.MEDIAN == policy:
                     pivot = st.median(tab[low:high+1])
+                    #print(pivot, "= pivot")
                     pivot_idx = None
                     #print((tab[low:high+1]))
                     #print(pivot)
@@ -135,6 +137,7 @@ def bm_quicksort_random(tab, low:int, high:int,ipodiastimata:list,policy:bm_poli
                         mid_low = int(low + mid_distance*n)
                         mid_high = int(high - mid_distance*n)
                         pivot = st.median(tab[mid_low:mid_high+1])
+                        
                     else:
                         pivot = st.median(tab[low:high+1])
                     pivot_idx = None
@@ -145,10 +148,11 @@ def bm_quicksort_random(tab, low:int, high:int,ipodiastimata:list,policy:bm_poli
                 elif bm_policy.ALTERNATING == policy:
                     pivot_idx = int(alt_excess*low + (1-alt_excess)*high) if alt_excess_low else int(alt_excess*high + (1-alt_excess)*low)
                     alt_excess_low = not alt_excess_low
-                    print("mpike sto aloternate")
+                    #print("mpike sto aloternate")
                 elif bm_policy.RANDOM == policy:
                     print("random")
                     pivot_idx = int(np.random.uniform(low, 1+high))
+                    print(pivot_idx)
                     
                 else:
                     pivot_idx = int(low+high)//2
@@ -157,8 +161,6 @@ def bm_quicksort_random(tab, low:int, high:int,ipodiastimata:list,policy:bm_poli
                     print("MPENI  STO  PIVODT[IDXP]")
                     pivot = tab[pivot_idx]
                 
-                #print("low=",low, "high =",high)
-                #print(high-low+1)   
                 
                 #partition
                 pivot_elements = [v for v in tab[low:high+1] if v == pivot]
@@ -249,9 +251,7 @@ def bm_quicksort_rec(tab, low:int, high:int) -> None:
 
 
 def bm_issorted(tab) -> bool:
-    """bm_issorted: Checks whether an array is sorted.
-
-    """
+    """bm_issorted: Checks whether an array is sorted."""
 
     n = len(tab)
     for i in range(0, n-1):
@@ -259,29 +259,3 @@ def bm_issorted(tab) -> bool:
             return False
     return True
 
-''' # Driver code
-#a = np.load("Uniform.npy")
-print(a)
-#print('the length of array is ' ,len(a))
-c = Counter(a)
-total = sum(count > 1 for count in c.values())
-#print("there are %i duplicates elements in the array " %total)
-#metrisi duplicate stoixeion 
-time1 = time.time()
-bm_quicksort_random(a, 0, len(a)-1)
-
-time2 = time.time()
-sort_time=(time2-time1) 
-#print('time to sort the array: %f' %sort_time)
-print(a)
-
-with open('test.csv','w') as file:
-    writer = csv.writer(file)
-    csv_data = [len(a)]
-    
-    writer.writerow(csv_data)
-
-
-
-dianisma = bm_quicksort_random()
-'''

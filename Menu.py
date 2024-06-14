@@ -28,7 +28,7 @@ def option3():
 
 def option4():
     
-    geometric_numbers_d1istribution.create_geometric_distribution_numbers_array()
+    geometric_numbers_distribution.create_geometric_distribution_numbers_array()
 
     
     
